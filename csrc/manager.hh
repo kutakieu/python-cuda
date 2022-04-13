@@ -1,3 +1,4 @@
+#include <vec3.h>
 class GPURenderer
 {
   // pointer to the GPU memory where the array is stored
@@ -6,6 +7,8 @@ class GPURenderer
   int *array_host;
   // length of the array (number of elements)
   int length;
+  vec3 *fb;
+  int canvas_height, canvas_width;
 
 public:
   /* By using the swig default names INPLACE_ARRAY1, DIM1 in the header
@@ -19,9 +22,11 @@ public:
        %apply (int* ARGOUT_ARRAY1, int DIM1) {(int* myarray, int length)}
    */
 
-  GPURenderer(int *INPLACE_ARRAY1, int DIM1); // constructor (copies to GPU)
+  GPURenderer(int *INPLACE_ARRAY1, int DIM1, int DIM2); // constructor (copies to GPU)
 
   ~GPURenderer(); // destructor
+
+  void render();
 
   void increment(); // does operation inplace on the GPU
 
