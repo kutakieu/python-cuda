@@ -3,30 +3,26 @@ cimport numpy as np
 
 assert sizeof(int) == sizeof(np.int32_t)
 
-cdef extern from "src/manager.hh":
-    cdef cppclass C_GPUAdder "GPUAdder":
-        C_GPUAdder(np.int32_t*, int)
+cdef extern from "csrc/manager.hh":
+    cdef cppclass C_GPURenderer "GPURenderer":
+        C_GPURenderer(np.int32_t*, int, int)
+        void render()
+        void raymarch()
+        void fb2img()
         void increment()
         void retreive()
         void retreive_to(np.int32_t*, int)
 
-cdef class GPUAdder:
-    cdef C_GPUAdder* g
-    cdef int dim1
+cdef class GPURenderer:
+    cdef C_GPURenderer* g
+    cdef int canvas_height
+    cdef int canvas_width
 
-    def __cinit__(self, np.ndarray[ndim=1, dtype=np.int32_t] arr):
-        self.dim1 = len(arr)
-        self.g = new C_GPUAdder(&arr[0], self.dim1)
+    def __cinit__(self, np.ndarray[ndim=1, dtype=np.int32_t] arr, canvas_height, canvas_width):
+        # self.canvas_height, self.canvas_width = arr.shape[:2]
+        self.canvas_height = canvas_height
+        self.canvas_width = canvas_width
+        self.g = new C_GPURenderer(&arr[0], self.canvas_height, self.canvas_width)
 
-    def increment(self):
-        self.g.increment()
-
-    def retreive_inplace(self):
-        self.g.retreive()
-
-    def retreive(self):
-        cdef np.ndarray[ndim=1, dtype=np.int32_t] a = np.zeros(self.dim1, dtype=np.int32)
-
-        self.g.retreive_to(&a[0], self.dim1)
-
-        return a
+    def render(self):
+        self.g.render()
