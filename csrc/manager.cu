@@ -22,7 +22,6 @@ void GPURenderer::render()
   dim3 blocks(canvas_width / tx + 1, canvas_height / ty + 1);
   dim3 threads(tx, ty);
   cam = camera(vec3(0, 1, 0), vec3(0, 0, -1), vec3(0, 0, 2), 90);
-  // kernel_render<<<blocks, threads>>>(fb, canvas_height, canvas_width);
   kernel_ray_marching<<<blocks, threads>>>(fb, canvas_height, canvas_width, cam);
   cudaError_t err = cudaGetLastError();
   assert(err == 0);
