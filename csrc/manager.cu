@@ -1,4 +1,3 @@
-#include <kernel.cu>
 #include <raymarch.cu>
 #include <manager.hh>
 #include <assert.h>
