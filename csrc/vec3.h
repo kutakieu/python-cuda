@@ -44,6 +44,8 @@ public:
     CUDA_HOSTDEV inline float length() const { return sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]); }
     CUDA_HOSTDEV inline float squared_length() const { return e[0] * e[0] + e[1] * e[1] + e[2] * e[2]; }
     CUDA_HOSTDEV inline void make_unit_vector();
+    CUDA_HOSTDEV inline vec3 normalize();
+    CUDA_HOSTDEV inline vec3 normalize01();
 
     float e[3];
 };
@@ -66,6 +68,18 @@ CUDA_HOSTDEV inline void vec3::make_unit_vector()
     e[0] *= k;
     e[1] *= k;
     e[2] *= k;
+}
+
+CUDA_HOSTDEV inline vec3 vec3::normalize()
+{
+    float length = sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
+    return vec3(e[0] / length, e[1] / length, e[2] / length);
+}
+
+CUDA_HOSTDEV inline vec3 vec3::normalize01()
+{
+    float length = sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
+    return vec3((e[0] / length + 1) / 2, (e[1] / length + 1) / 2, (e[2] / length + 1) / 2);
 }
 
 CUDA_HOSTDEV inline vec3 operator+(const vec3 &v1, const vec3 &v2)
