@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "vec3.h"
 #include "camera.h"
+#include "math_utils.h"
 #include <iostream>
 using namespace std;
 
@@ -26,16 +27,6 @@ __device__ vec3 get_normal(vec3 pos)
         .normalize01();
 }
 
-__device__ float clamp(float in, float low, float high)
-{
-    if (low < in && in < high)
-        return in;
-    else if (in < low)
-        return low;
-    else
-        return high;
-}
-
 __device__ vec3 ray_march(vec3 ray, camera cam)
 {
     float distance = 0.0;
@@ -51,7 +42,7 @@ __device__ vec3 ray_march(vec3 ray, camera cam)
     if (abs(distance) < 0.001)
     {
         vec3 normal = get_normal(rPos);
-        float diff = clamp(abs(dot(LIGHT_DIR, normal)), 0.1, 1.0);
+        float diff = MathUtils::clamp(abs(dot(LIGHT_DIR, normal)), 0.1, 1.0);
         return vec3(diff, diff, diff);
         // return vec3(normal.x(), normal.y(), normal.z());
     }
