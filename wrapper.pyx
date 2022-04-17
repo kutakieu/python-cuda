@@ -7,6 +7,8 @@ cdef extern from "csrc/manager.hh":
     cdef cppclass C_GPURenderer "GPURenderer":
         C_GPURenderer(np.int32_t*, int, int)
         void render()
+        void raymarch()
+        void fb2img()
         void increment()
         void retreive()
         void retreive_to(np.int32_t*, int)

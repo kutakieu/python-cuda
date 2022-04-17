@@ -1,6 +1,5 @@
 #include <vec3.h>
-#include <camera.h>
-class GPURenderer
+class RayMarcher
 {
   // pointer to the GPU memory where the array is stored
   int *array_device;
@@ -9,7 +8,6 @@ class GPURenderer
   // length of the array (number of elements)
   int length;
   vec3 *fb;
-  camera cam;
   int canvas_height, canvas_width;
 
 public:
@@ -18,21 +16,17 @@ public:
      swig the info it needs to cast to and from numpy arrays.
 
      If instead the constructor line said
-       GPURenderer(int* myarray, int length);
+       RayMarcher(int* myarray, int length);
 
      We would need a line like this in the swig.i file
        %apply (int* ARGOUT_ARRAY1, int DIM1) {(int* myarray, int length)}
    */
 
-  GPURenderer(int *INPLACE_ARRAY1, int DIM1, int DIM2); // constructor (copies to GPU)
+  RayMarcher(int *INPLACE_ARRAY1, int DIM1, int DIM2); // constructor (copies to GPU)
 
-  ~GPURenderer(); // destructor
+  ~RayMarcher(); // destructor
 
   void render();
-
-  void raymarch();
-
-  void fb2img();
 
   void increment(); // does operation inplace on the GPU
 
