@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "vec3.h"
 #include "camera.h"
+#include "scene.h"
 #include "math_utils.h"
 #include <iostream>
 using namespace std;
@@ -27,16 +28,16 @@ __device__ vec3 get_normal(vec3 pos)
         .normalize01();
 }
 
-__device__ vec3 ray_march(vec3 ray, camera cam)
+__device__ vec3 ray_march(vec3 ray, Scene *scene)
 {
     float distance = 0.0;
     float rLen = 0.0;
-    vec3 rPos = cam.position;
+    vec3 rPos = scene->cam.position;
     for (int i = 0; i < 64; i++)
     {
-        distance = distance_function(rPos);
+        distance = scene->distance(rPos);
         rLen += distance;
-        rPos = cam.position + ray * rLen;
+        rPos = scene->cam.position + ray * rLen;
     }
 
     if (abs(distance) < 0.001)
@@ -52,7 +53,7 @@ __device__ vec3 ray_march(vec3 ray, camera cam)
     }
 }
 
-__global__ void kernel_ray_marching(vec3 *fb, int max_x, int max_y, camera cam)
+__global__ void kernel_ray_marching(vec3 *fb, int max_x, int max_y, Scene *scene)
 {
     int i = threadIdx.x + blockIdx.x * blockDim.x;
     int j = threadIdx.y + blockIdx.y * blockDim.y;
@@ -60,6 +61,6 @@ __global__ void kernel_ray_marching(vec3 *fb, int max_x, int max_y, camera cam)
         return;
     int pixel_index = j * max_x + i;
     float focus_length = 1 / tan(FOV);
-    vec3 ray = cam.make_ray(float(i) / max_x * 2 - 1, float(j) / max_y * 2 - 1);
-    fb[pixel_index] = ray_march(ray, cam);
+    vec3 ray = scene->cam.make_ray(float(i) / max_x * 2 - 1, float(j) / max_y * 2 - 1);
+    fb[pixel_index] = ray_march(ray, scene);
 }

@@ -1232,8 +1232,8 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "wrapper.pyx":16
- *         void retreive_to(np.int32_t*, int)
+/* "wrapper.pyx":12
+ *         void fb2img()
  * 
  * cdef class GPURenderer:             # <<<<<<<<<<<<<<
  *     cdef C_GPURenderer* g
@@ -1786,7 +1786,7 @@ static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_tuple__4;
 /* Late includes */
 
-/* "wrapper.pyx":21
+/* "wrapper.pyx":17
  *     cdef int canvas_width
  * 
  *     def __cinit__(self, np.ndarray[ndim=1, dtype=np.int32_t] arr, canvas_height, canvas_width):             # <<<<<<<<<<<<<<
@@ -1831,17 +1831,17 @@ static int __pyx_pw_11gpurenderer_11GPURenderer_1__cinit__(PyObject *__pyx_v_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_canvas_height)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); __PYX_ERR(1, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); __PYX_ERR(1, 17, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_canvas_width)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); __PYX_ERR(1, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); __PYX_ERR(1, 17, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(1, 21, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(1, 17, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -1856,13 +1856,13 @@ static int __pyx_pw_11gpurenderer_11GPURenderer_1__cinit__(PyObject *__pyx_v_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 21, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(1, 17, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("gpurenderer.GPURenderer.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_arr), __pyx_ptype_5numpy_ndarray, 1, "arr", 0))) __PYX_ERR(1, 21, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_arr), __pyx_ptype_5numpy_ndarray, 1, "arr", 0))) __PYX_ERR(1, 17, __pyx_L1_error)
   __pyx_r = __pyx_pf_11gpurenderer_11GPURenderer___cinit__(((struct __pyx_obj_11gpurenderer_GPURenderer *)__pyx_v_self), __pyx_v_arr, __pyx_v_canvas_height, __pyx_v_canvas_width);
 
   /* function exit code */
@@ -1891,31 +1891,31 @@ static int __pyx_pf_11gpurenderer_11GPURenderer___cinit__(struct __pyx_obj_11gpu
   __pyx_pybuffernd_arr.rcbuffer = &__pyx_pybuffer_arr;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_arr.rcbuffer->pybuffer, (PyObject*)__pyx_v_arr, &__Pyx_TypeInfo_nn___pyx_t_5numpy_int32_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 21, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_arr.rcbuffer->pybuffer, (PyObject*)__pyx_v_arr, &__Pyx_TypeInfo_nn___pyx_t_5numpy_int32_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(1, 17, __pyx_L1_error)
   }
   __pyx_pybuffernd_arr.diminfo[0].strides = __pyx_pybuffernd_arr.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_arr.diminfo[0].shape = __pyx_pybuffernd_arr.rcbuffer->pybuffer.shape[0];
 
-  /* "wrapper.pyx":23
+  /* "wrapper.pyx":19
  *     def __cinit__(self, np.ndarray[ndim=1, dtype=np.int32_t] arr, canvas_height, canvas_width):
  *         # self.canvas_height, self.canvas_width = arr.shape[:2]
  *         self.canvas_height = canvas_height             # <<<<<<<<<<<<<<
  *         self.canvas_width = canvas_width
  *         self.g = new C_GPURenderer(&arr[0], self.canvas_height, self.canvas_width)
  */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_canvas_height); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 23, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_canvas_height); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 19, __pyx_L1_error)
   __pyx_v_self->canvas_height = __pyx_t_1;
 
-  /* "wrapper.pyx":24
+  /* "wrapper.pyx":20
  *         # self.canvas_height, self.canvas_width = arr.shape[:2]
  *         self.canvas_height = canvas_height
  *         self.canvas_width = canvas_width             # <<<<<<<<<<<<<<
  *         self.g = new C_GPURenderer(&arr[0], self.canvas_height, self.canvas_width)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_canvas_width); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 24, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_As_int(__pyx_v_canvas_width); if (unlikely((__pyx_t_1 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 20, __pyx_L1_error)
   __pyx_v_self->canvas_width = __pyx_t_1;
 
-  /* "wrapper.pyx":25
+  /* "wrapper.pyx":21
  *         self.canvas_height = canvas_height
  *         self.canvas_width = canvas_width
  *         self.g = new C_GPURenderer(&arr[0], self.canvas_height, self.canvas_width)             # <<<<<<<<<<<<<<
@@ -1930,11 +1930,11 @@ static int __pyx_pf_11gpurenderer_11GPURenderer___cinit__(struct __pyx_obj_11gpu
   } else if (unlikely(__pyx_t_2 >= __pyx_pybuffernd_arr.diminfo[0].shape)) __pyx_t_1 = 0;
   if (unlikely(__pyx_t_1 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_1);
-    __PYX_ERR(1, 25, __pyx_L1_error)
+    __PYX_ERR(1, 21, __pyx_L1_error)
   }
   __pyx_v_self->g = new GPURenderer((&(*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_arr.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_arr.diminfo[0].strides))), __pyx_v_self->canvas_height, __pyx_v_self->canvas_width);
 
-  /* "wrapper.pyx":21
+  /* "wrapper.pyx":17
  *     cdef int canvas_width
  * 
  *     def __cinit__(self, np.ndarray[ndim=1, dtype=np.int32_t] arr, canvas_height, canvas_width):             # <<<<<<<<<<<<<<
@@ -1962,7 +1962,7 @@ static int __pyx_pf_11gpurenderer_11GPURenderer___cinit__(struct __pyx_obj_11gpu
   return __pyx_r;
 }
 
-/* "wrapper.pyx":27
+/* "wrapper.pyx":23
  *         self.g = new C_GPURenderer(&arr[0], self.canvas_height, self.canvas_width)
  * 
  *     def render(self):             # <<<<<<<<<<<<<<
@@ -1987,14 +1987,14 @@ static PyObject *__pyx_pf_11gpurenderer_11GPURenderer_2render(struct __pyx_obj_1
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("render", 0);
 
-  /* "wrapper.pyx":28
+  /* "wrapper.pyx":24
  * 
  *     def render(self):
  *         self.g.render()             # <<<<<<<<<<<<<<
  */
   __pyx_v_self->g->render();
 
-  /* "wrapper.pyx":27
+  /* "wrapper.pyx":23
  *         self.g = new C_GPURenderer(&arr[0], self.canvas_height, self.canvas_width)
  * 
  *     def render(self):             # <<<<<<<<<<<<<<
@@ -3416,15 +3416,15 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_11gpurenderer_GPURenderer) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_11gpurenderer_GPURenderer) < 0) __PYX_ERR(1, 12, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_11gpurenderer_GPURenderer.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_11gpurenderer_GPURenderer.tp_dictoffset && __pyx_type_11gpurenderer_GPURenderer.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_11gpurenderer_GPURenderer.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_GPURenderer, (PyObject *)&__pyx_type_11gpurenderer_GPURenderer) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_11gpurenderer_GPURenderer) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_GPURenderer, (PyObject *)&__pyx_type_11gpurenderer_GPURenderer) < 0) __PYX_ERR(1, 12, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_11gpurenderer_GPURenderer) < 0) __PYX_ERR(1, 12, __pyx_L1_error)
   __pyx_ptype_11gpurenderer_GPURenderer = &__pyx_type_11gpurenderer_GPURenderer;
   __Pyx_RefNannyFinishContext();
   return 0;

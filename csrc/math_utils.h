@@ -19,6 +19,7 @@ public:
         else
             return high;
     }
+    // static CUDA_HOSTDEV vec3 get_normal(vec3 pos, distance_function)
 };
 
 #endif
