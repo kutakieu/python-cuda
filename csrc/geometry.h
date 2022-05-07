@@ -6,13 +6,16 @@
 
 #include "vec3.h"
 
-#ifndef DISTANCEFUNCTION
-#define DISTANCEFUNCTION
+#ifndef GEOMETRY
+#define GEOMETRY
 
-class DistanceFunction
+class Geometry
 {
 public:
-    CUDA_HOSTDEV virtual float distance(vec3 pos) = 0;
+    CUDA_HOSTDEV virtual float distance(vec3 pos)
+    {
+        return 100;
+    };
 };
 
 #endif
@@ -20,11 +23,11 @@ public:
 #ifndef SPHERE
 #define SPHERE
 
-class Sphere : public DistanceFunction
+class Sphere
 {
 public:
     float radius;
-    CUDA_HOSTDEV Sphere() {}
+    CUDA_HOSTDEV Sphere() { radius = 1.0; }
     CUDA_HOSTDEV Sphere(float r)
     {
         radius = r;
